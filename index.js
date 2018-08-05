@@ -11,7 +11,7 @@ bot.on('ready', () => {
     console.log(`Je suis près !`)
 });
 
-bot.login('NDYxMTIxNTEzNDA0MjM1Nzc3.DhOsbQ.-SgPvTezTeFidcnpQwuchz8wVLI')
+bot.login('process.env.TOKEN')
 
 bot.on("guildMemberAdd", member => {
     //let vip = member.guild.roles.find("name", "-= VIP =-")
