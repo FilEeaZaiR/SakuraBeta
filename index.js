@@ -70,7 +70,7 @@ bot.on('message', message => {
 
         let membre = message.guild.member(message.author);
 
-        let role = message.guild.roles.find("name", "Red")
+        let role = message.guild.roles.find("name", "Rouge")
 
         membre.addRole(role).catch(console.error);
 
@@ -130,6 +130,83 @@ bot.on('message', message => {
         membre.addRole(role).catch(console.error);
 
         message.channel.send(`${membre} a maintenant le rôle ${role} ! :tada: `)
+
+    }
+    if(message.content.startsWith(prefix + "noorange")){
+
+        let membre = message.guild.member(message.author);
+
+        let role = message.guild.roles.find("name", "Orange")
+
+        membre.delRole(role).catch(console.error);
+
+        message.channel.send(`${membre} n'a maintenant plus le rôle ${role} ! :tada: `)
+
+    }
+    if(message.content.startsWith(prefix + "nored")){
+
+        let membre = message.guild.member(message.author);
+
+        let role = message.guild.roles.find("name", "Rouge")
+
+        membre.delRole(role).catch(console.error);
+
+        message.channel.send(`${membre} n'a maintenant plus le rôle ${role} ! :tada: `)
+
+    }
+    if(message.content.startsWith(prefix + "nobleu")){
+
+        let membre = message.guild.member(message.author);
+
+        let role = message.guild.roles.find("name", "Bleu")
+
+        membre.delRole(role).catch(console.error);
+
+        message.channel.send(`${membre} n'a maintenant plus le rôle ${role} ! :tada: `)
+
+    }
+    if(message.content.startsWith(prefix + "nojaune")){
+
+        let membre = message.guild.member(message.author);
+
+        let role = message.guild.roles.find("name", "Jaune")
+
+        membre.delRole(role).catch(console.error);
+
+        message.channel.send(`${membre} n'a maintenant plus le rôle ${role} ! :tada: `)
+
+    }
+    if(message.content.startsWith(prefix + "novert")){
+
+        let membre = message.guild.member(message.author);
+
+        let role = message.guild.roles.find("name", "Vert")
+
+        membre.delRole(role).catch(console.error);
+
+        message.channel.send(`${membre} n'a maintenant plus le rôle ${role} ! :tada: `)
+
+    }
+    if(message.content.startsWith(prefix + "norose")){
+
+        let membre = message.guild.member(message.author);
+
+        let role = message.guild.roles.find("name", "Rose")
+
+        membre.delRole(role).catch(console.error);
+
+        message.channel.send(`${membre} n'a maintenant plus le rôle ${role} ! :tada: `)
+
+    }
+    if(message.content.startsWith(prefix + "noviolet")){
+
+        let membre = message.guild.member(message.author);
+
+        let role = message.guild.roles.find("name", "Violet")
+
+        membre.delRole(role).catch(console.error);
+
+        message.channel.send(`${membre} n'a maintenant plus le rôle ${role} ! :tada: `)
 
     }
 });
