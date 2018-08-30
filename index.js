@@ -11,131 +11,125 @@ bot.on('ready', () => {
     console.log(`Je suis près !`)
 });
 
+function random(min, max) {
+    min = Math.ceil(1);
+    max = Math.floor(10)
+    randnum = Math.floor(Math.random() * (max - min +1) + min);
+}
+
 bot.login(process.env.TOKEN)
 
 bot.on("guildMemberAdd", member => {
     //let vip = member.guild.roles.find("name", "-= VIP =-")
-    let joueur = member.guild.roles.find("name", "-= Joueur =-")
-    member.guild.channels.find("name", "bienvenue").send(`${member.user.username} viens d'arrivé sur le serveur`)
+    let joueur = member.guild.roles.find("name", "↘ Visiteur ↙")
+    member.guild.channels.find("name", "★bienvenue★").send(`${member.user.username} viens d'arrivé sur le serveur`)
     //member.addRole(vip)
     member.addRole(joueur)
 });
 
 bot.on("guildMemberRemove", member => {
-    member.guild.channels.find("name", "bienvenue").send(`${member.user.username} viens de quitter le  serveur`)
+    member.guild.channels.find("name", "★bienvenue★").send(`${member.user.username} viens de quitter le  serveur`)
 });
 
 bot.on('message', message => {
-    
-    if(message.content === prefix + "help") {
-        var aide_embed = new Discord.RichEmbed()
-        .setColor('RANDOM')
-        .setTitle(`:robot: Voici mes catégories d'aide !`)
-        .setDescription(`Voici mes commandes disponible :`)
-        .setThumbnail(message.author.avatarURL)
-        .addField(":tools: Modération", "Fais `" + prefix + "*mod` pour voir mes commandes de modération !")
-        .addField(":tada: Fun", "Fais `" + prefix + "*fun` pour voir mes commandes d'animation !")
-        .setFooter("Menu d'aide - By Pamort58")
-        .setTimestamp()
-        message.channel.send(aide_embed);
-      }
    
-      if(message.content === prefix + "mod") {
-        var mod_embed = new Discord.RichEmbed()
+    if (message.content === prefix + "infos") {
+        var infos_embed = new Discord.RichEmbed()
         .setColor('RANDOM')
-        .setTitle(`:tools: Voici mes commandes modérations !`)
+        .setTitle("Voici quelques infos sur le bot et le serveur")
         .setThumbnail(message.author.avatarURL)
-        .addField(prefix + "kick <@user>", "Kick l'utilisateur !")
-        .addField(prefix + "ban <@user>", "Ban l'utilisateur !")
-        .addField(prefix + "clear nombre", "Supprime le nombre de messages indiqué")
-        .addField(prefix + "mute <@user>", "Mute l'utilisateur mentionné")
-        .addField(prefix + "unmute <@user>", "Unmute l'utilisateur mentionné")
-        .setFooter("Commande modération - By Pamort58")
-        .setTimestamp()
-        message.channel.send(mod_embed);
-      }
-   
-      if(message.content === prefix + "fun") {
-        var fun_embed = new Discord.RichEmbed()
-        .setColor('RANDOM')
-        .setTitle(`:tada: Voici mes commandes amusantes !`)
-        .setThumbnail(message.author.avatarURL)
-        .addField(prefix + "pileface", "Le bot fait un pile ou face !")
-        .addField(prefix + "numbergame", "Le bot choisi un nombre, à toi de le deviner !")
-        .setFooter("Commande Fun - By Pamort58")
-        .setTimestamp()
-        message.channel.send(fun_embed);
-      }
-
-    if(message.content.startsWith(prefix + "pileface")) {
-        randnum2 = Math.floor(Math.random() * (2 - 0) + 0)
-
-        if(randnum2 === 0){
-            message.channel.send("Tu viens d'obtenir un : **Pile** !")
-        }else{
-            message.channel.send("tu viens d'obtenir un : **Face** !")
-        }
-
-        console.log(randnum2);
+        .addField("Nom du bot :robot: :", `${client.user.tag}`, true)
+        .addField("Descriminateur du bot :hash: :", `#${client.user.discriminator}`)
+        .addField("ID du bot :id: :", `${client.user.id}`)
+        .addField("Nombre de bots :", message.guild.members.filter(m => m.user.bot).size)
+        .addField("Nombre de membres :", message.guild.members.filter(m => !m.user.bot).size)
+        .addField("Nombre de membres en ligne", message.guild.members.filter(m => m.presence.status === 'online').filter(m => !m.user.bot).size)
+        .addField("Nombre de membres hors ligne", message.guild.members.filter(m => m.presence.status === 'offline').filter(m => !m.user.bot).size)
+        .addField("Nombre de catégories :", message.guild.channels.filter(chan => chan.type === 'category').size)
+        .addField("Nombre de salons textuels :", message.guild.channels.filter(chan => chan.type === 'text').size)
+        .addField("Nombre de salons vocaux :", message.guild.channels.filter(chan => chan.type === 'voice').size)
+        .addField("Nombre de catégories et de salons :", message.guild.channels.size)
+        .setFooter("Menu des infos")
+        message.channel.send(infos_embed)
+        console.log("un membre à éxécuter la commande pour afficher le menu d'infos")
     }
-
-    if(message.content.startsWith(prefix + "numbergame")) {
-        if(!message.guild.member(message.author).roles.find("name", "-= Animateur =-")) return message.channel.send(`Désolé ${message.author.username}, il faut être Animateur pour faire cette commande.`);
-            var numgame_embed = new Discord.RichEmbed()
-            .setColor('753951')
-            .addField(prefix + "numbergame", "Voir les commandes pour le jeu :tada:")
-            .addField(prefix + "start numbergame", "commencer le jeu :video_game:")
-            .addField(prefix + "stop numbergame", "finir le jeu")
-            .setFooter("By Pamort58")
-        message.channel.sendEmbed(numgame_embed)
-    }
-
-    if(message.content.startsWith(prefix + "start numbergame")) {
-        if(!message.guild.member(message.author).roles.find("name", "-= Animateur =-")) return message.channel.send(`Désolé ${message.author.username}, il faut être Animateur pour faire cette commande.`);
-            message.channel.send(`:tada: @everyone, une partie viens d'être lancé par ${message.author.username} !`)
-
-            party_launch = true;
-
-            randnum = Math.floor(Math.random() * (2500 - 0) + 0)
-
-            console.log(randnum);
-    }
-
-    if(party_launch && message.content != null){
-
-        if(Number.isInteger(parseInt(message.content))){
-
-            if(message.content > randnum){
-
-                message.channel.send(`désolé ${message.author.username} le nombre est plus petit !`)
-
-            }
-
-            else if(message.content < randnum){
-
-                message.channel.send(`désolé ${message.author.username} le nombre est plus grand !`)
-
-            }
-
-            else{
-
-                message.channel.send(`Bien joué à ${message.author.username}, le nombre était ${randnum}`)
-                party_launch = false;
-
-            }
-
-        }
-    }
-
-    if(message.content.startsWith(prefix + "stop numbergame")) {
-        if(!message.guild.member(message.author).roles.find("name", "-= Animateur =-")) return message.channel.send(`Désolé ${message.author.username}, il faut être Animateur pour faire cette commande.`);
-            if(party_launch == true){
-                message.channel.send(`:weary: La partie viens d'être arrêté par ${message.author.username} !`)
     
-                party_launch = false;
-            }else {
-                message.channel.send(`:cry: désolé ${message.author.name} mais aucune partie n'a été lancé !`) 
-            }
+    if(message.content.startsWith(prefix + "orange")){
+
+        let membre = message.guild.member(message.author);
+
+        let role = message.guild.roles.find("name", "Orange")
+
+        membre.addRole(role).catch(console.error);
+
+        message.channel.send(`${membre} a maintenant le rôle ${role} ! :tada: `)
+
     }
-            
+
+    if(message.content.startsWith(prefix + "red")){
+
+        let membre = message.guild.member(message.author);
+
+        let role = message.guild.roles.find("name", "Red")
+
+        membre.addRole(role).catch(console.error);
+
+        message.channel.send(`${membre} a maintenant le rôle ${role} ! :tada: `)
+
+    }
+    if(message.content.startsWith(prefix + "bleu")){
+
+        let membre = message.guild.member(message.author);
+
+        let role = message.guild.roles.find("name", "Bleu")
+
+        membre.addRole(role).catch(console.error);
+
+        message.channel.send(`${membre} a maintenant le rôle ${role} ! :tada: `)
+
+    }
+    if(message.content.startsWith(prefix + "jaune")){
+
+        let membre = message.guild.member(message.author);
+
+        let role = message.guild.roles.find("name", "Jaune")
+
+        membre.addRole(role).catch(console.error);
+
+        message.channel.send(`${membre} a maintenant le rôle ${role} ! :tada: `)
+
+    }
+    if(message.content.startsWith(prefix + "vert")){
+
+        let membre = message.guild.member(message.author);
+
+        let role = message.guild.roles.find("name", "Vert")
+
+        membre.addRole(role).catch(console.error);
+
+        message.channel.send(`${membre} a maintenant le rôle ${role} ! :tada: `)
+
+    }
+    if(message.content.startsWith(prefix + "rose")){
+
+        let membre = message.guild.member(message.author);
+
+        let role = message.guild.roles.find("name", "Rose")
+
+        membre.addRole(role).catch(console.error);
+
+        message.channel.send(`${membre} a maintenant le rôle ${role} ! :tada: `)
+
+    }
+    if(message.content.startsWith(prefix + "violet")){
+
+        let membre = message.guild.member(message.author);
+
+        let role = message.guild.roles.find("name", "Violet")
+
+        membre.addRole(role).catch(console.error);
+
+        message.channel.send(`${membre} a maintenant le rôle ${role} ! :tada: `)
+
+    }
 });
