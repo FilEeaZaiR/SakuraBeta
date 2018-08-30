@@ -138,7 +138,7 @@ bot.on('message', message => {
 
         let role = message.guild.roles.find("name", "Orange")
 
-        membre.delRole(role).catch(console.error);
+        membre.removeRole(role).catch(console.error);
 
         message.channel.send(`${membre} n'a maintenant plus le rôle ${role} ! :tada: `)
 
@@ -149,7 +149,7 @@ bot.on('message', message => {
 
         let role = message.guild.roles.find("name", "Rouge")
 
-        membre.delRole(role).catch(console.error);
+        membre.removeRole(role).catch(console.error);
 
         message.channel.send(`${membre} n'a maintenant plus le rôle ${role} ! :tada: `)
 
@@ -160,7 +160,7 @@ bot.on('message', message => {
 
         let role = message.guild.roles.find("name", "Bleu")
 
-        membre.delRole(role).catch(console.error);
+        membre.removeRole(role).catch(console.error);
 
         message.channel.send(`${membre} n'a maintenant plus le rôle ${role} ! :tada: `)
 
@@ -171,7 +171,7 @@ bot.on('message', message => {
 
         let role = message.guild.roles.find("name", "Jaune")
 
-        membre.delRole(role).catch(console.error);
+        membre.removeRole(role).catch(console.error);
 
         message.channel.send(`${membre} n'a maintenant plus le rôle ${role} ! :tada: `)
 
@@ -182,7 +182,7 @@ bot.on('message', message => {
 
         let role = message.guild.roles.find("name", "Vert")
 
-        membre.delRole(role).catch(console.error);
+        membre.removeRole(role).catch(console.error);
 
         message.channel.send(`${membre} n'a maintenant plus le rôle ${role} ! :tada: `)
 
@@ -193,7 +193,7 @@ bot.on('message', message => {
 
         let role = message.guild.roles.find("name", "Rose")
 
-        membre.delRole(role).catch(console.error);
+        membre.removeRole(role).catch(console.error);
 
         message.channel.send(`${membre} n'a maintenant plus le rôle ${role} ! :tada: `)
 
@@ -204,7 +204,7 @@ bot.on('message', message => {
 
         let role = message.guild.roles.find("name", "Violet")
 
-        membre.delRole(role).catch(console.error);
+        membre.removeRole(role).catch(console.error);
 
         message.channel.send(`${membre} n'a maintenant plus le rôle ${role} ! :tada: `)
 
